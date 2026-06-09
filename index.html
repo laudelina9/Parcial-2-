@@ -66,7 +66,7 @@
         <div class="drawing-container">🖥️⚡🌐</div>
         <p>Introduce tus datos y el código asignado para comenzar el desafío.</p>
         <input type="text" id="student-name" placeholder="Nombre y Apellido completo">
-        <input type="text" id="access-code" placeholder="Código de Acceso (Ej: ALUM1 hasta ALUM12 o DOCENTE)">
+        <input type="text" id="access-code" placeholder="Código de Acceso (Ej: A01-7 hasta A17-7 o DOCENTE-7)">
         <button onclick="validateAccess()">Ingresar al Juego</button>
     </div>
 
@@ -112,8 +112,6 @@
 </div>
 
 <script>
-    const CODE_TEACHER_VALID = "docente";   
-    
     // REEMPLAZA AQUÍ CON TU URL COMPLETA O ID DE FORMSPREE
     const FORMSPREE_URL = "https://formspree.io/f/maqkrkyg"; 
 
@@ -122,7 +120,7 @@
         { q: "¿Qué es una red informática o de datos?", icon: "fa-network-wired", drawing: "💻📡💻", type: "choice", opts: ["Un conjunto de computadoras y dispositivos conectados para compartir información y recursos.", "Una aplicación para navegar por páginas web.", "El cableado que lleva electricidad a los hogares.", "Un programa para eliminar virus de los celulares."], a: 0 },
         { q: "¿Cuál fue la primera red informática importante de la historia?", icon: "fa-history", drawing: "⏳📜", type: "choice", opts: ["Internet Explorer", "ARPANET", "World Wide Web", "WiFi Alliance"], a: 1 },
         { q: "¿Qué significa estrictamente la palabra 'Internet'?", icon: "fa-globe", drawing: "🌍🔗", type: "choice", opts: ["Informática Internacional", "Red de interconexión (Interconnected Networks)", "Páginas Web Unidas", "Señal Inalámbrica de Alta Velocidad"], a: 1 },
-        { q: "¿Qué diferencia principal hay entre una red analógica y una red digital?", icon: "fa-wave-square", drawing: "〰️🔢", type: "choice", opts: ["La analógica transmite datos mediante ondas continuas; la digital usa valores binarios discretos (ceros y unos).", "La analógica es inalámbrica y la digital usa solo fibra óptica.", "La analógica no permite llamadas telefónicas y la digital sí.", "No hay diferencia, son sinónimos."], a: 0 },
+        { q: "¿Qué diferencia principal hay entre una red analógica y una red digital?", icon: "fa-wave-square", drawing: "〰️🔢", type: "choice", opts: ["La analógica transmite datos mediante ondas continuas; la digital usa valores binarios discretos (ceros y unos).", "La analógica is inalámbrica y la digital usa solo fibra óptica.", "La analógica no permite llamadas telefónicas y la digital sí.", "No hay diferencia, son sinónimos."], a: 0 },
         { q: "¿Qué significan las siglas de una red LAN?", icon: "fa-house-signal", drawing: "🏠📶", type: "choice", opts: ["Local Area Network (Red de Área Local)", "Long Access Node (Nodo de Largo Acceso)", "Línea Analógica Nacional", "Libre Acceso de Navegación"], a: 0 },
         { q: "¿Qué escala geográfica cubre una red MAN?", icon: "fa-city", drawing: "🏙️🏢", type: "choice", opts: ["El planeta entero.", "El interior de una habitación o casa.", "Un área metropolitana, como una ciudad o municipio.", "El espacio entre dos dispositivos Bluetooth."], a: 2 },
         { q: "¿Qué es una Intranet?", icon: "fa-lock", drawing: "🏢🔒", type: "choice", opts: ["Una red pública accesible por cualquier persona del mundo.", "Una red informática privada y segura que pertenece a una organización o empresa.", "Un navegador de internet de código abierto.", "El sistema que distribuye los datos móviles."], a: 1 },
@@ -180,8 +178,11 @@
             return;
         }
 
-        // Expresión regular para validar alum1, alum2 ... hasta alum12 de manera flexible
-        const studentCodeRegex = /^alum([1-9]|1[0-2])$/;
+        // Nuevo código de acceso del docente adaptado
+        const CODE_TEACHER_VALID = "docente-7";   
+
+        // Expresión regular para validar desde a01-7 hasta a17-7 de manera flexible
+        const studentCodeRegex = /^a(0[1-9]|1[0-7])-7$/;
 
         if (codeInput === CODE_TEACHER_VALID) {
             accessMode = "teacher";
@@ -194,7 +195,7 @@
             studentName = document.getElementById("student-name").value.trim();
             startGame();
         } else {
-            alert("Código de acceso incorrecto. Recuerda que es desde ALUM1 hasta ALUM12 (o DOCENTE).");
+            alert("Código de acceso incorrecto. Recuerda que es desde A01-7 hasta A17-7 (o DOCENTE-7).");
         }
     }
 
@@ -387,7 +388,7 @@
             <div class="icon-header" style="color:#ef4444;"><i class="fas fa-power-off"></i></div>
             <h1>JUEGO FINALIZADO</h1>
             <p style="color:white; font-size:18px;">Ya puedes cerrar la ventana o pestaña de tu navegador.</p>
-            <div class="credits">Autora: Prof. Mariela L. Loza</div>
+            <div class="credits">© Prof. Mariela L. Loza. Todos los derechos reservados. Versión 1.0 - 2026</div>
         `;
     }
 </script>
