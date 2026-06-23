@@ -66,7 +66,7 @@
         <div class="drawing-container">🖥️⚡🌐</div>
         <p>Introduce tus datos y el código asignado para comenzar el desafío.</p>
         <input type="text" id="student-name" placeholder="Nombre y Apellido completo">
-        <input type="text" id="access-code" placeholder="Código de Acceso (Ej: A01-7 hasta A27-7 o DOCENTE-7)">
+        <input type="text" id="access-code" placeholder="Código de Acceso (Ej: A01-7 hasta A30-7 o DOCENTE-7)">
         <button onclick="validateAccess()">Ingresar al Juego</button>
     </div>
 
@@ -182,7 +182,7 @@
         const CODE_TEACHER_VALID = "docente-7";   
 
         // Expresión regular para validar desde a01-7 hasta a27-7 de manera flexible
-        const studentCodeRegex = /^a(0[1-9]|2[0-7])-7$/;
+        const studentCodeRegex = /^a(0[1-9]|3[0-7])-7$/;
 
         if (codeInput === CODE_TEACHER_VALID) {
             accessMode = "teacher";
@@ -195,7 +195,7 @@
             studentName = document.getElementById("student-name").value.trim();
             startGame();
         } else {
-            alert("Código de acceso incorrecto. Recuerda que es desde A01-7 hasta A27-7 (o DOCENTE-7).");
+            alert("Código de acceso incorrecto. Recuerda que es desde A01-7 hasta A30-7 (o DOCENTE-7).");
         }
     }
 
