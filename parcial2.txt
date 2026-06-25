@@ -7,82 +7,167 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-main: #000000;         
+            --bg-main: #000000;
             --bg-card: #1e293b;         
             --text-main: #ffffff;       
             --text-muted: #cbd5e1;      
             --accent-yellow: #fef08a;   
             --btn-primary: #2563eb;     
             --btn-hover: #3b82f6;       
-            --border-color: #475569;    
+            --border-color: #475569;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; align-items: center; justify-content: center; padding: 20px; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none; 
+        }
         
-        .container { background: var(--bg-card); width: 100%; max-width: 700px; padding: 35px; border-radius: 16px; border: 3px solid var(--border-color); text-align: center; position: relative; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-        h1 { color: var(--text-main); margin-bottom: 20px; font-size: 26px; font-weight: 800; letter-spacing: 0.5px; }
-        h3 { color: var(--text-main); font-size: 20px; line-height: 1.4; font-weight: 700; margin-bottom: 15px; }
-        p { margin-bottom: 20px; font-size: 16px; line-height: 1.6; color: var(--text-muted); }
+        body { 
+            background-color: var(--bg-main);
+            color: var(--text-main); 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 10px;
+        }
         
-        .drawing-container { font-size: 70px; margin: 15px 0; display: block; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+        .container { 
+            background: var(--bg-card);
+            width: 100%; 
+            max-width: 700px; 
+            padding: 25px; 
+            border-radius: 16px; 
+            border: 3px solid var(--border-color); 
+            text-align: center; 
+            position: relative;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1); 
+        }
         
-        input { width: 100%; padding: 14px; margin: 12px 0; border: 3px solid #94a3b8; background-color: #0f172a; color: white; border-radius: 8px; font-size: 18px; font-weight: bold; outline: none; }
+        h1 { color: var(--text-main); margin-bottom: 15px; font-size: 22px; font-weight: 800; letter-spacing: 0.5px; }
+        h3 { color: var(--text-main); font-size: 18px; line-height: 1.4; font-weight: 700; margin-bottom: 15px; }
+        p { margin-bottom: 15px; font-size: 15px; line-height: 1.5; color: var(--text-muted); }
+        
+        .drawing-container { font-size: 50px; margin: 10px 0; display: block; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+        
+        input { 
+            width: 100%;
+            padding: 14px; 
+            margin: 10px 0; 
+            border: 3px solid #94a3b8; 
+            background-color: #0f172a; 
+            color: white; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: bold;
+            outline: none; 
+        }
         input:focus { border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.5); }
         
-        button { background: var(--btn-primary); color: #ffffff; border: 2px solid #ffffff; padding: 16px 30px; font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 15px; transition: background 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+        button { 
+            background: var(--btn-primary);
+            color: #ffffff; 
+            border: 2px solid #ffffff; 
+            padding: 14px 25px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            width: 100%;
+            margin-top: 10px; 
+            transition: background 0.2s; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
         button:hover { background: var(--btn-hover); }
         button:disabled { background: #475569; color: #94a3b8; border-color: #334155; cursor: not-allowed; }
         
         .hidden { display: none !important; }
-        .icon-header { font-size: 55px; color: var(--accent-yellow); margin-bottom: 20px; filter: drop-shadow(0 0 8px rgba(254, 240, 138, 0.4)); }
+        .icon-header { font-size: 45px; color: var(--accent-yellow); margin-bottom: 15px; filter: drop-shadow(0 0 8px rgba(254, 240, 138, 0.4)); }
         
         /* Opciones Múltiples */
-        .options-container { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 25px; }
-        .option-btn { background: #0f172a; border: 3px solid #64748b; text-align: left; padding: 16px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; color: #ffffff; transition: all 0.2s; display: flex; align-items: center; text-transform: none; letter-spacing: normal; }
+        .options-container { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        .option-btn { 
+            background: #0f172a;
+            border: 3px solid #64748b; 
+            text-align: left; 
+            padding: 14px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 15px; 
+            font-weight: 600; 
+            color: #ffffff;
+            transition: all 0.2s; 
+            display: flex; 
+            align-items: center; 
+            text-transform: none; 
+            letter-spacing: normal;
+        }
         .option-btn:hover { background: #1e293b; border-color: #94a3b8; }
         .option-btn.selected { background: #1d4ed8; border-color: #ffffff; box-shadow: 0 0 12px rgba(255,255,255,0.3); }
 
         /* Unir con Flechas */
-        .match-container { display: flex; justify-content: space-between; margin-top: 20px; gap: 15px; }
-        .match-col { flex: 1; display: flex; flex-direction: column; gap: 12px; }
-        .match-item { background: #0f172a; border: 3px solid #64748b; color: #ffffff; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; min-height: 75px; display: flex; align-items: center; justify-content: center; line-height: 1.4; }
+        .match-container { display: flex; justify-content: space-between; margin-top: 15px; gap: 10px; }
+        .match-col { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        .match-item { 
+            background: #0f172a; 
+            border: 3px solid #64748b;
+            color: #ffffff; 
+            padding: 10px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 13px; 
+            font-weight: 600; 
+            min-height: 70px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            line-height: 1.3; 
+        }
         .match-item:hover { border-color: #94a3b8; }
         .match-item.selected { background: #ca8a04; border-color: #ffffff; color: #000000; font-weight: 800; }
         .match-item.linked { background: #166534; border-color: #4ade80; color: #ffffff; cursor: not-allowed; opacity: 0.85; }
 
-        .credits { margin-top: 30px; font-size: 15px; color: var(--accent-yellow); font-weight: 700; border-top: 2px dashed var(--border-color); padding-top: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .credits { margin-top: 25px; font-size: 13px; color: var(--accent-yellow); font-weight: 700; border-top: 2px dashed var(--border-color); padding-top: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        .progress-bar { width: 100%; height: 12px; background: #0f172a; border: 2px solid #475569; border-radius: 6px; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { width: 100%; height: 10px; background: #0f172a; border: 2px solid #475569; border-radius: 6px; margin-bottom: 20px; overflow: hidden; }
         .progress-fill { height: 100%; background: #22c55e; width: 0%; transition: width 0.3s; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> 
 
 <div class="container" id="game-card">
     <div id="screen-login">
         <div class="icon-header"><i class="fas fa-network-wired"></i></div>
         <h1>EVALUACIÓN DE REDES</h1>
         <div class="drawing-container">🖥️⚡🌐</div>
-        <p>Introduce tus datos y el código asignado para comenzar el desafío.</p>
+        <p>Introduce tus datos y el código asignado para comenzar.</p>
+        <p style="color: #f87171; font-weight: bold; font-size: 13px; padding: 0 5px;">🚨 CONTROL DE INTEGRIDAD: Si sales de la pantalla completa, cambias de pestaña o intentas capturar pantalla (usando comandos como Win+Shift+S), el sistema te expulsará asignándote un REPROBADO (0).</p>
         <input type="text" id="student-name" placeholder="Nombre y Apellido completo">
-        <input type="text" id="access-code" placeholder="Código de Acceso (Ej: A01-7 hasta A17-7 o DOCENTE-7)">
+        <input type="text" id="access-code" placeholder="Código de Acceso (Ej: A01-7 o DOCENTE-7)">
+        
         <button onclick="validateAccess()">Ingresar al Juego</button>
     </div>
 
     <div id="screen-game" class="hidden">
         <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
         <div class="icon-header" id="question-icon"><i class="fas fa-wifi"></i></div>
-        
         <div class="drawing-container" id="question-drawing">🎨</div>
-        
         <h3 id="question-text">Pregunta aquí</h3>
         
         <div class="options-container" id="options-box"></div>
 
         <div id="match-box" class="hidden">
-            <p style="font-size: 15px; color: var(--accent-yellow); font-weight: bold; margin-bottom: 15px;">
-                ¡CONSIGNA!: Haz clic en un concepto de la izquierda y luego en su relación correcta de la derecha.
+            <p style="font-size: 14px; color: var(--accent-yellow); font-weight: bold; margin-bottom: 10px;">
+                ¡CONSIGNA!: Toca un concepto de la izquierda y luego su relación en la derecha.
             </p>
             <div class="match-container">
                 <div class="match-col" id="col-left"></div>
@@ -97,25 +182,23 @@
         <div class="icon-header"><i class="fas fa-paper-plane"></i></div>
         <h1>GUARDANDO RESULTADOS...</h1>
         <div class="drawing-container">⏳🚀</div>
-        <p style="color: #ffffff; font-weight: bold;">Estamos enviando las respuestas al registro de la docente. Por favor, espera en esta pantalla.</p>
+        <p style="color: #ffffff; font-weight: bold;">Estamos registrando tus respuestas de forma segura. Por favor, espera.</p>
     </div>
 
     <div id="screen-end" class="hidden">
         <div class="icon-header"><i class="fas fa-trophy"></i></div>
         <h1>¡DESAFÍO COMPLETADO!</h1>
         <div class="drawing-container">🏆🎉🎓</div>
-        <p id="final-message" style="color: #ffffff; font-size: 18px;"></p>
+        <p id="final-message" style="color: #ffffff; font-size: 16px;"></p>
         <button onclick="exitGame()" style="background-color: #dc2626; border-color: #ffffff;">Salir del juego</button>
     </div>
 
-    <div class="credits">Autora: Prof. Mariela L. Loza</div>
+    <div class="credits"> Copyright ©2026 Todos los derechos reservados - Prof. Mariela L. Loza - Versión 1.0 NTICx</div>
 </div>
 
 <script>
-    // REEMPLAZA AQUÍ CON TU URL COMPLETA O ID DE FORMSPREE
-    const FORMSPREE_URL = "https://formspree.io/f/maqkrkyg"; 
+    const FORMSPREE_URL = "https://formspree.io/f/mjgqyjbw"; 
 
-    // Banco completo estructurado estrictamente de tus archivos (10 Choice y 10 Match con 3-4 opciones)
     const rawQuestions = [
         { q: "¿Qué es una red informática o de datos?", icon: "fa-network-wired", drawing: "💻📡💻", type: "choice", opts: ["Un conjunto de computadoras y dispositivos conectados para compartir información y recursos.", "Una aplicación para navegar por páginas web.", "El cableado que lleva electricidad a los hogares.", "Un programa para eliminar virus de los celulares."], a: 0 },
         { q: "¿Cuál fue la primera red informática importante de la historia?", icon: "fa-history", drawing: "⏳📜", type: "choice", opts: ["Internet Explorer", "ARPANET", "World Wide Web", "WiFi Alliance"], a: 1 },
@@ -140,37 +223,30 @@
         { q: "Relacioná las situaciones de colapso o usos habituales:", icon: "fa-triangle-exclamation", drawing: "💥🌐", type: "match", pairs: [{ left: "Caída mundial por un día", right: "Provocaría pérdidas comerciales y cortes en comunicaciones globales." }, { left: "Uso cotidiano", right: "Interactuar en redes sociales, estudiar o ver contenidos." }, { left: "Aplicaciones online", right: "Programas de mensajería o mapas que necesitan red fija." }, { left: "Empresa proveedora", right: "Compañía encargada de darnos el enlace de Internet." }] }
     ];
 
-    // Mezclar el banco completo al iniciar el programa de forma 100% aleatoria
     const questions = [...rawQuestions].sort(() => Math.random() - 0.5);
-
     let currentIdx = 0;
     let score = 0;
     let studentName = "";
     let accessMode = ""; 
     let selectedOption = null;
     let studentAnswers = [];
+    let isGameRunning = false;
 
-    function playGameSound() {
+    function playSound() {
         try {
             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); 
-            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            oscillator.start();
-            gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.15);
-            oscillator.stop(audioCtx.currentTime + 0.15);
-        } catch(e) {
-            console.log("Audio no soportado");
-        }
+            oscillator.connect(gainNode); gainNode.connect(audioCtx.destination);
+            oscillator.type = 'sine'; oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); 
+            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            oscillator.start(); gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.12);
+            oscillator.stop(audioCtx.currentTime + 0.12);
+        } catch(e){}
     }
 
     function validateAccess() {
-        // .toLowerCase() para procesar tanto mayúsculas como minúsculas en el nombre y código
-        const nameInput = document.getElementById("student-name").value.trim().toLowerCase();
+        const nameInput = document.getElementById("student-name").value.trim();
         const codeInput = document.getElementById("access-code").value.trim().toLowerCase();
 
         if (!nameInput) {
@@ -178,32 +254,127 @@
             return;
         }
 
-        // Nuevo código de acceso del docente adaptado
-        const CODE_TEACHER_VALID = "docente-7";   
-
-        // Expresión regular para validar desde a01-7 hasta a17-7 de manera flexible
-        const studentCodeRegex = /^a(0[1-9]|1[0-7])-7$/;
-
-        if (codeInput === CODE_TEACHER_VALID) {
+        if (codeInput === "docente-7") {
             accessMode = "teacher";
-            studentName = "[DOCENTE EN PRUEBA] " + document.getElementById("student-name").value.trim();
-            alert("¡Modo Docente Activado! Podrás probar todo el juego de manera libre.");
+            studentName = "[DOCENTE] " + nameInput;
+            alert("Modo prueba activado. Sin penalizaciones en esta sesión.");
             startGame();
-        } else if (studentCodeRegex.test(codeInput)) {
+        } else if (/^a(0[1-9]|[1-2][0-9]|3[0-7])-7$/.test(codeInput)) {
             accessMode = "student";
-            // Guardamos el formato original ingresado por el alumno para el reporte docente
-            studentName = document.getElementById("student-name").value.trim();
-            startGame();
+            studentName = nameInput;
+            requestFullScreenAndStart();
         } else {
-            alert("Código de acceso incorrecto. Recuerda que es desde A01-7 hasta A17-7 (o DOCENTE-7).");
+            alert("Código de acceso inválido.");
+        }
+    }
+
+    function requestFullScreenAndStart() {
+        const docElm = document.documentElement;
+        const requestFS = docElm.requestFullscreen || docElm.mozRequestFullScreen || docElm.webkitRequestFullScreen || docElm.msRequestFullscreen;
+        
+        if (requestFS) {
+            requestFS.call(docElm).then(startGame).catch(() => {
+                alert("Para comenzar el examen, debes permitir el modo pantalla completa.");
+            });
+        } else {
+            startGame();
         }
     }
 
     function startGame() {
         document.getElementById("screen-login").classList.add("hidden");
         document.getElementById("screen-game").classList.remove("hidden");
+        isGameRunning = true;
         showQuestion();
     }
+
+    // =======================================================
+    // 🛡️ CONTROL ULTRA-SENSIBLE (PC Y NOTEBOOK DETECCIÓN DE FOCO)
+    // =======================================================
+    
+    function triggerCheater(reason) {
+        if (!isGameRunning || accessMode === "teacher") return;
+        isGameRunning = false;
+        score = 0; 
+
+        studentAnswers.push({ pregunta: "ALERTA INTEGRIDAD EXAMEN", resultado: `Infracción: ${reason}.` });
+        
+        document.getElementById("screen-game").classList.add("hidden");
+        document.getElementById("screen-sending").classList.remove("hidden");
+
+        const formData = {
+            Estudiante: `[ANULADO POR TRAMPA] ${studentName}`,
+            NotaFinal: "0 / 100",
+            DetalleRespuestas: JSON.stringify(studentAnswers)
+        };
+
+        fetch(FORMSPREE_URL, {
+            method: "POST",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        })
+        .finally(() => {
+            document.getElementById("screen-sending").classList.add("hidden");
+            document.getElementById("game-card").innerHTML = `
+                <div class="icon-header" style="color:#ef4444;"><i class="fas fa-exclamation-triangle"></i></div>
+                <h1 style="color:#ef4444; font-size:20px;">SISTEMA BLOQUEADO - NOTA: 0</h1>
+                <p style="color:white; font-size:16px; font-weight:bold; margin-top:10px;">
+                    Se detectó el uso de herramientas de captura, recortes de pantalla, o el abandono de la ventana del examen.
+                </p>
+                <p style="color:var(--accent-yellow); font-size:22px; font-weight:800; margin-top:15px;">
+                    TU NOTA: 0 / 100 (REPROBADO)
+                </p>
+                <p style="color:#94a3b8; font-size:13px; margin-top:15px;">
+                    La notificación de fraude fue enviada de forma automática a la Prof. Mariela L. Loza. Ya no puedes reingresar al sistema.
+                </p>
+                <div class="credits">SISTEMA CONTROL DE INTEGRIDAD - NTICx 2026</div>
+            `;
+            if (document.exitFullscreen) { document.exitFullscreen().catch(()=>{}); }
+        });
+    }
+
+    // 🌟 DETECCIÓN CLAVE PARA NOTEBOOK: Al presionar combinaciones de recorte, el navegador pierde el foco.
+    window.addEventListener("blur", () => {
+        // Captura inmediata si la pestaña se vuelve inactiva por un software externo de captura (como Recortes de Windows)
+        triggerCheater("Pérdida de foco crítico (Intento de captura de pantalla o ventana externa)");
+    });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+            triggerCheater("El alumno cambió de pestaña o minimizó el navegador.");
+        }
+    });
+
+    // Detecta salida de pantalla completa en notebooks y computadoras
+    const fsEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'];
+    fsEvents.forEach(evt => {
+        document.addEventListener(evt, () => {
+            const fsElement = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+            if (!fsElement && isGameRunning) {
+                triggerCheater("Salida forzada o voluntaria de Pantalla Completa.");
+            }
+        });
+    });
+
+    // Bloqueo manual extra en el teclado
+    window.addEventListener("keydown", (e) => {
+        if (!isGameRunning) return;
+        
+        // Bloqueo directo de teclas sospechosas
+        if (e.key === "F12" || e.key === "PrintScreen" || e.keyCode === 44 || e.key === "Meta") {
+            e.preventDefault();
+            triggerCheater("Presión de tecla de sistema prohibida.");
+        }
+        // Bloquea Ctrl+P (Imprimir)
+        if (e.ctrlKey && (e.key === "p" || e.key === "P")) {
+            e.preventDefault();
+            triggerCheater("Intento de impresión de pantalla.");
+        }
+    });
+
+    // =======================================================
+    // FIN CONTROL DE SEGURIDAD
+    // =======================================================
 
     function showQuestion() {
         selectedOption = null;
@@ -213,16 +384,13 @@
         document.getElementById("progress").style.width = `${progressPercent}%`;
 
         const currentQ = questions[currentIdx];
-        
-        const iconHeader = document.getElementById("question-icon");
-        iconHeader.className = `icon-header fas ${currentQ.icon}`;
+        document.getElementById("question-icon").className = `icon-header fas ${currentQ.icon}`;
         document.getElementById("question-drawing").innerText = currentQ.drawing;
-        
         document.getElementById("question-text").innerText = `PREGUNTA ${currentIdx + 1} de ${questions.length}: ${currentQ.q}`;
 
         const optionsBox = document.getElementById("options-box");
         const matchBox = document.getElementById("match-box");
-
+        
         if (currentQ.type === "choice") {
             optionsBox.classList.remove("hidden");
             matchBox.classList.add("hidden");
@@ -231,7 +399,7 @@
             currentQ.opts.forEach((opt, idx) => {
                 const btn = document.createElement("button");
                 btn.className = "option-btn";
-                btn.innerHTML = `<span style="color:var(--accent-yellow); margin-right:12px; font-weight:800; font-size:18px;">${String.fromCharCode(65 + idx)})</span> ${opt}`;
+                btn.innerHTML = `<span style="color:var(--accent-yellow); margin-right:10px; font-weight:800;">${String.fromCharCode(65 + idx)})</span> ${opt}`;
                 btn.onclick = () => selectChoice(idx, btn);
                 optionsBox.appendChild(btn);
             });
@@ -243,37 +411,30 @@
     }
 
     function selectChoice(index, element) {
-        playGameSound(); 
+        playSound();
         selectedOption = index;
-        const buttons = document.querySelectorAll(".option-btn");
-        buttons.forEach(b => b.classList.remove("selected"));
+        document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
         element.classList.add("selected");
         document.getElementById("next-btn").disabled = false;
     }
 
     let activeLeft = null;
     let matchAnswers = {};
-    
     function initMatchQuestion(qData) {
         const colLeft = document.getElementById("col-left");
         const colRight = document.getElementById("col-right");
-        colLeft.innerHTML = "";
-        colRight.innerHTML = "";
-        matchAnswers = {};
-        activeLeft = null;
-
-        // Mezclar las columnas individualmente para romper el orden correlativo original
+        colLeft.innerHTML = ""; colRight.innerHTML = "";
+        matchAnswers = {}; activeLeft = null;
+        
         const shuffledLeft = [...qData.pairs].sort(() => Math.random() - 0.5);
         const shuffledRight = [...qData.pairs].sort(() => Math.random() - 0.5);
 
         shuffledLeft.forEach(pair => {
             const item = document.createElement("div");
-            item.className = "match-item";
-            item.innerText = pair.left;
-            item.dataset.value = pair.left;
+            item.className = "match-item"; item.innerText = pair.left; item.dataset.value = pair.left;
             item.onclick = () => {
                 if(item.classList.contains("linked")) return;
-                playGameSound();
+                playSound();
                 document.querySelectorAll("#col-left .match-item").forEach(i => i.classList.remove("selected"));
                 item.classList.add("selected");
                 activeLeft = pair.left;
@@ -283,20 +444,15 @@
 
         shuffledRight.forEach(pair => {
             const item = document.createElement("div");
-            item.className = "match-item";
-            item.innerText = pair.right;
-            item.dataset.value = pair.right;
+            item.className = "match-item"; item.innerText = pair.right; item.dataset.value = pair.right;
             item.onclick = () => {
                 if(!activeLeft || item.classList.contains("linked")) return;
-                playGameSound();
-                
+                playSound();
                 matchAnswers[activeLeft] = pair.right;
                 
                 const leftElem = Array.from(document.querySelectorAll("#col-left .match-item")).find(i => i.dataset.value === activeLeft);
-                leftElem.classList.remove("selected");
-                leftElem.classList.add("linked");
+                leftElem.classList.remove("selected"); leftElem.classList.add("linked");
                 item.classList.add("linked");
-
                 activeLeft = null;
 
                 if(Object.keys(matchAnswers).length === qData.pairs.length) {
@@ -309,61 +465,37 @@
 
     function nextQuestion() {
         const currentQ = questions[currentIdx];
-        
         if (currentQ.type === "choice") {
             const isCorrect = (selectedOption === currentQ.a);
             if (isCorrect) score += 5; 
-            studentAnswers.push({
-                pregunta: currentQ.q,
-                resultado: isCorrect ? "Correcto" : "Incorrecto"
-            });
+            studentAnswers.push({ pregunta: currentQ.q, resultado: isCorrect ? "Correcto" : "Incorrecto" });
         } else if (currentQ.type === "match") {
             let correctMatches = 0;
-            currentQ.pairs.forEach(p => {
-                if (matchAnswers[p.left] === p.right) {
-                    correctMatches++;
-                }
-            });
+            currentQ.pairs.forEach(p => { if (matchAnswers[p.left] === p.right) correctMatches++; });
             if(correctMatches === currentQ.pairs.length) score += 5; 
-            studentAnswers.push({
-                pregunta: currentQ.q,
-                resultado: `Uniones correctas: ${correctMatches} de ${currentQ.pairs.length}`
-            });
+            studentAnswers.push({ pregunta: currentQ.q, resultado: `Uniones: ${correctMatches}/${currentQ.pairs.length}` });
         }
 
         currentIdx++;
-
-        if (currentIdx < questions.length) {
-            showQuestion();
-        } else {
-            endGame();
-        }
+        if (currentIdx < questions.length) { showQuestion(); } else { endGame(); }
     }
 
     function endGame() {
+        isGameRunning = false;
         document.getElementById("screen-game").classList.add("hidden");
-        const notaFinal = score; 
-
+        
         if (accessMode === "teacher") {
             document.getElementById("screen-end").classList.remove("hidden");
-            document.getElementById("final-message").innerHTML = `<strong>[MODO SIMULACIÓN DOCENTE]</strong><br><br>El juego funciona de forma óptima.<br>Nota calculada de esta sesión: <span style="color:var(--accent-yellow); font-size:24px; font-weight:bold;">${notaFinal} / 100</span>.`;
+            document.getElementById("final-message").innerHTML = `<strong>[MODO DOCENTE]</strong><br>Nota simulada: <span style="color:var(--accent-yellow); font-size:22px; font-weight:bold;">${score} / 100</span>.`;
             return;
         }
 
         document.getElementById("screen-sending").classList.remove("hidden");
-
-        const formData = {
-            Estudiante: studentName,
-            NotaFinal: `${notaFinal} / 100`,
-            DetalleRespuestas: JSON.stringify(studentAnswers)
-        };
-
+        const formData = { Estudiante: studentName, NotaFinal: `${score} / 100`, DetalleRespuestas: JSON.stringify(studentAnswers) };
+        
         fetch(FORMSPREE_URL, {
             method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
             body: JSON.stringify(formData)
         })
         .then(response => {
@@ -372,13 +504,13 @@
             if (response.ok) {
                 document.getElementById("final-message").innerHTML = `¡Examen guardado, <strong>${studentName}</strong>!<br><br>Tus respuestas fueron enviadas con éxito a la planilla de la profesora Mariela.`;
             } else {
-                document.getElementById("final-message").innerText = "Hubo un problema enviando el examen por Formspree. Por favor toma captura de pantalla de tu nota y avisa a tu profesora.";
+                document.getElementById("final-message").innerText = "Error al enviar. Comunícalo a tu profesora.";
             }
         })
-        .catch(error => {
+        .catch(() => {
             document.getElementById("screen-sending").classList.add("hidden");
             document.getElementById("screen-end").classList.remove("hidden");
-            document.getElementById("final-message").innerText = "Error de red al procesar los datos. Comunícate con la docente.";
+            document.getElementById("final-message").innerText = "Error de conexión de red.";
         });
     }
 
@@ -386,9 +518,8 @@
         window.close();
         document.getElementById("game-card").innerHTML = `
             <div class="icon-header" style="color:#ef4444;"><i class="fas fa-power-off"></i></div>
-            <h1>JUEGO FINALIZADO</h1>
-            <p style="color:white; font-size:18px;">Ya puedes cerrar la ventana o pestaña de tu navegador.</p>
-            <div class="credits">© Prof. Mariela L. Loza. Todos los derechos reservados. Versión 1.0 - 2026</div>
+            <h1>EXAMEN FINALIZADO</h1>
+            <p style="color:white; font-size:16px;">Ya puedes cerrar la pestaña de tu navegador.</p>
         `;
     }
 </script>
